@@ -26,6 +26,7 @@ void push(struct Stack *stack, int value, int *error) {
         return;
     }
     if (stack->top == MAXLINE) {
+        Log(stdout, ERROR, "stack", "stack overflow for %d", value);
         *error = ERROR_VALUE;
         return;
     }
@@ -44,7 +45,7 @@ int pop(struct Stack *stack, int *error) {
         return -1;
     }
 
-    if (stack->top == 0) {
+    if (stack->top < 0) {
         Log(stdout, ERROR, "stack", "stack underflow");
         *error = ERROR_VALUE;
         return -1;
